@@ -12,7 +12,7 @@ public class Repository<T> : IRepository<T> where T : class
     public Repository(ApplicationDbContext db)
     {
         _db = db;
-        //_db.Products.Include(u => u.Category).Include(u=>u.CoverType);
+        //_db..Include(u => u.Category).Include(u=>u.CoverType);
         dbSet = _db.Set<T>();
     }
 
@@ -31,9 +31,15 @@ public class Repository<T> : IRepository<T> where T : class
         return query.FirstOrDefault();
     }
 
-    public IEnumerable<T> GetAll(string? includeProperties = null)
+    public IEnumerable<T> GetAll(Expression<Func<T,bool>>?filter=null,string? includeProperties = null)
     {
         IQueryable<T> query = dbSet;
+        if (filter != null)
+        {
+            query = query.Where(filter);
+        }
+            
+        
         if (includeProperties != null)
         {
             foreach (var includePro in includeProperties.Split(new char[] {','},StringSplitOptions.RemoveEmptyEntries))

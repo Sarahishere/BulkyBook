@@ -6,4 +6,10 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Reference Include="Microsoft.AspNetCore.Identity.UI">
+        <HintPath>..\..\..\..\..\..\.nuget\packages\microsoft.aspnetcore.identity.ui\6.0.10\lib\net6.0\Microsoft.AspNetCore.Identity.UI.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
 </Project>
