@@ -29,4 +29,12 @@ public class OrderHeaderRepository : Repository<OrderHeader>, IOrderHeaderReposi
             }
         }
     }
+    
+    public void UpdatePaymentId(int id, string sessionId, string paymentIntentId)
+    {
+        var orderFromDb = _db.OrderHeaders.FirstOrDefault(u=>u.Id == id);
+        orderFromDb.SessionId = sessionId;
+        orderFromDb.PaymentIntentId = paymentIntentId;
+        orderFromDb.PaymentDate = DateTime.Now;
+    }
 }

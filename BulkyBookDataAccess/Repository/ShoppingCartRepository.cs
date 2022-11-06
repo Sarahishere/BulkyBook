@@ -10,11 +10,6 @@ public class ShoppingCartRepository : Repository<ShoppingCart>, IShoppingCartRep
     {
     }
 
-    public void Update(ShoppingCart obj)
-    {
-        _db.ShoppingCarts.Update(obj);
-    }
-
     public int IncrementCount(ShoppingCart shoppingCart, int count)
     {
         shoppingCart.Count += count;
